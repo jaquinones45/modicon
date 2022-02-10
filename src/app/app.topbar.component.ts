@@ -14,7 +14,7 @@ import {AppMainComponent} from './app.main.component';
                         routerLink="/"
                         class="noble-ui-logo d-block mb-2"
                     >
-                        MODI<span>CON</span>
+                        ECOPETROL<span>GMA</span>
                     </div>
                 </div>
 

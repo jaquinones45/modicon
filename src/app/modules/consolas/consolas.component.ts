@@ -90,6 +90,8 @@ export class ConsolasComponent implements OnInit {
             item.total = Math.round(item.quantity / quantity_total * 100)
             return item
         })
+
+        this.topActive = lodash.orderBy(this.topActive, ['total'], ['desc'])
     }
 
     getTopSlots() {
@@ -110,6 +112,8 @@ export class ConsolasComponent implements OnInit {
             item.total = Math.round(item.quantity / quantity_total * 100)
             return item
         })
+
+        this.topSlots = lodash.orderBy(this.topSlots, ["total"], ["desc"]);
     }
 
     getTopSwitches() {
@@ -130,6 +134,8 @@ export class ConsolasComponent implements OnInit {
             item.total = Math.round(item.quantity / quantity_total * 100)
             return item
         })
+
+        this.topSwitches = lodash.orderBy(this.topSwitches, ["total"], ["desc"]);
     }
 
     initMap() {
