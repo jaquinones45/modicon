@@ -1,0 +1,14 @@
+div.tooltip {	
+  position: absolute;			
+  text-align: left;			
+  width: auto;	
+  padding: 5px;				
+  height: auto;					
+  font: 12px sans-serif;		
+  background: white;
+  font-size: 1rem;	
+  border-radius: 8px;			
+  pointer-events: none;		
+  border: solid 1px rgb(190, 190, 190);	
+  background: linear-gradient(top, #BFF 5%, #DFF 100%);
+}

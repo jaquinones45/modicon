@@ -1,0 +1,16 @@
+ngb-pagination ::ng-deep ul > li > a {
+  border-top-width: 0px !important;
+  border-left-width: 0px !important;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+  background-color:  transparent !important;
+  color:black !important;
+  font-weight: 600 !important;
+  border-color: black !important;
+}
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+  color: #97A6BA!important;
+  background-color: transparent !important;
+}

@@ -1,0 +1,21 @@
+.mr-3,
+.mx-3 {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+#map {
+  height: 668px;
+}
+
+.custom {
+    height: 300px;
+	width: 200px;
+	border: 1px solid #ddd;
+	background: #f1f1f1;
+	overflow-y: scroll;
+}
+
+.scroll {
+    height: auto;
+}

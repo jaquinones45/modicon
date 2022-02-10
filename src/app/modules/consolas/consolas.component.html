@@ -1,0 +1,121 @@
+<div class="grid">
+    <div class="col-6">
+        <div class="grid">
+            <div class="col-4 d-flex grid-margin">
+                <div class="card overflow-hidden w-100">
+                    <h6 class="card-title" style="margin-bottom: 0px;">TOP DE CANTIDAD ACTIVOS</h6>
+                    <div class="card-body" style="min-height: 220px">
+                        <div class="table-responsive mt-3">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr class="font-overpass">
+                                        <th class="text-left" style="width:5%">NOMBRE</th>
+                                        <th class="text-center" style="width:15%">CANT.</th>
+                                        <th class="text-center" style="width:5%">APORTE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        class="text-left text-md"
+                                        *ngFor="let element of topActive;"
+                                    >
+                                        <td class="text-left">{{ element.name }}</td>
+                                        <td class="text-center">{{ element.quantity }}</td>
+                                        <td class="text-center">
+                                            <app-barra
+                                                [data]="element.total"
+                                            ></app-barra>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex grid-margin">
+                <div class="card overflow-hidden w-100">
+                    <h6 class="card-title" style="margin-bottom: 0px;">TOP CANTIDAD DE SLOTS</h6>
+                    <div class="card-body" style="min-height: 220px">
+                        <div class="table-responsive mt-3">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr class="font-overpass">
+                                        <th class="text-left" style="width:5%">NOMBRE</th>
+                                        <th class="text-center" style="width:15%">CANT.</th>
+                                        <th class="text-center" style="width:5%">APORTE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        class="text-left text-md"
+                                        *ngFor="let element of topSlots;"
+                                    >
+                                        <td class="text-left">{{ element.name }}</td>
+                                        <td class="text-center">{{ element.quantity }}</td>
+                                        <td class="text-center">
+                                            <app-barra
+                                                [data]="element.total"
+                                            ></app-barra>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex grid-margin">
+                <div class="card overflow-hidden w-100">
+                    <h6 class="card-title" style="margin-bottom: 0px;">TOP CANTIDAD DE SWITCHES</h6>
+                    <div class="card-body" style="min-height: 220px">
+                        <div class="table-responsive mt-3">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr class="font-overpass">
+                                        <th class="text-left" style="width:40%">NOMBRE</th>
+                                        <th class="text-center" style="width:10%">CANT.</th>
+                                        <th class="text-center" style="width:50%">APORTE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        class="text-left text-md"
+                                        *ngFor="let element of topSwitches;"
+                                    >
+                                        <td class="text-left" style="width:40%">{{ element.name }}</td>
+                                        <td class="text-center" style="width:10%">{{ element.quantity }}</td>
+                                        <td class="text-center" style="width:50%">
+                                            <app-barra
+                                                [data]="element.total"
+                                            ></app-barra>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12 d-flex grid-margin">
+                <div class="card overflow-hidden w-100">
+                    <h6 class="card-title" style="margin-bottom: 0px;">RESUMEN DE LAS PLANTAS</h6>
+                    <!--<p class="card-subtitle">Listado de las plantas con su información detallada.</p>-->
+                    <div class="card-body" style="min-height: 220px">
+                        <app-tabla
+                            [data]="sistemas"
+                        ></app-tabla>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 d-flex grid-margin">
+        <div class="card overflow-hidden w-100">
+            <div class="card-body w-100" id="map"></div>
+        </div>
+    </div>
+
+</div>

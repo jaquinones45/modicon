@@ -1,0 +1,380 @@
+
+<div class="layout-dashboard">
+    <div class="grid">
+        <div class="col-12 p-md-12 p-xl-12">
+            <div class="card sale-graph">
+                <div class="card-header">
+                    <h6>DESEMPEÑO ENERGÉTICO Y PROGRAMACION</h6>
+                </div>
+
+                <p>Sistemas de Bombeo.</p>
+
+                <p-table
+                    [value]="[{ data: 0 }]"
+                    styleClass="p-datatable-customers"
+                    *ngIf="data != null"
+                >
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 40px">No.</th>
+                            <th>FUNCION</th>
+                            <th
+                                class="text-center"
+                                *ngFor="let element of data"
+                            >
+                                {{ element.desc }}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body">
+                        <tr class="">
+                            <td colspan="2" class="py-2 font-bold">
+                                OPTIMIZACION ENERGETICA
+                            </td>
+                            <td [attr.colspan]="data.length"></td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">1</td>
+                            <td class="">Eficiencia Energetica</td>
+
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        <app-var-num
+                                            [text]="
+                                                element.status.station.BEP * 100
+                                                    | number: '.0-1'
+                                            "
+                                            [value]="
+                                                element.status.station.BEP * 100
+                                            "
+                                        ></app-var-num>
+                                    </div>
+                                    <div class="col-6 pl-3">
+                                        <app-var-num
+                                            text="%"
+                                            [value]="
+                                                element.status.station.BEP * 100
+                                            "
+                                        ></app-var-num>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center border-top-0">2</td>
+                            <td class="border-top-0">Energia acumulada dia</td>
+                            <td
+                                class="border-top-0"
+                                *ngFor="let element of data"
+                            >
+                                <div class="flex justify-content-center">
+                                    <app-trend-bep
+                                        [data]="
+                                            element.status.station.BEP_history
+                                        "
+                                        [viewBoxHeight]="60"
+                                        [viewBoxWidth]="120"
+                                        *ngIf="element.status != null"
+                                    ></app-trend-bep>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center border-top-0">3</td>
+                            <td class="border-top-0">Estado energetico BPC</td>
+                            <td
+                                class="border-top-0"
+                                *ngFor="let element of data"
+                            >
+                                <div class="flex justify-content-center">
+                                    <app-bar-pumps
+                                        [data]="element.status.pumps"
+                                        [name]="'GAL'"
+                                        *ngIf="element.status != null"
+                                    ></app-bar-pumps>
+                                    <app-bar-pumps
+                                        [data]="element.status.pumps"
+                                        [name]="'SEB'"
+                                        *ngIf="element.status != null"
+                                    ></app-bar-pumps>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td colspan="2" class="py-2 font-bold">
+                                PROGRAMACION
+                            </td>
+                            <td [attr.colspan]="data.length"></td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">1</td>
+                            <td class="">Volumen programado</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        {{
+                                            element.hap.objetivo
+                                                | number: ".0-0"
+                                        }}
+                                    </div>
+                                    <div class="col-6 pl-3">BLS</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">2</td>
+                            <td class="">Volumen a la hora</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        {{
+                                            element.hap.puh_volumen
+                                                | number: ".0-0"
+                                        }}
+                                    </div>
+                                    <div class="col-6 pl-3">BLS</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">3</td>
+                            <td class="">% Cumplimiento (actual)</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        {{
+                                            element.hap.cumplimiento_dia * 100
+                                                | number: ".0-1"
+                                        }}
+                                    </div>
+                                    <div class="col-6 pl-3">%</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">4</td>
+                            <td class="">Flujo instantaneo</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        {{ element.hap.flujo | number: ".0-0" }}
+                                    </div>
+                                    <div class="col-6 pl-3">BPH</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td></td>
+                            <td class="py-2 font-bold">FLUJOS OBJETIVO</td>
+                            <td [attr.colspan]="data.length"></td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">5</td>
+                            <td class="">Flujo objetivo -> 97%</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        {{
+                                            element.hap.cumplimiento97_m
+                                                | number: ".0-0"
+                                        }}
+                                    </div>
+                                    <div class="col-6 pl-3">BPH</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">6</td>
+                            <td class="">Flujo objetivo -> 100%</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        {{
+                                            element.hap.cumplimiento_m
+                                                | number: ".0-0"
+                                        }}
+                                    </div>
+                                    <div class="col-6 pl-3">BPH</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">7</td>
+                            <td class="">Flujo objetivo -> 110%</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        {{
+                                            element.hap.cumplimiento110_m
+                                                | number: ".0-0"
+                                        }}
+                                    </div>
+                                    <div class="col-6 pl-3">BPH</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td></td>
+                            <td class="py-2 font-bold">PROYECCIONES</td>
+                            <td [attr.colspan]="data.length"></td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">8</td>
+                            <td class="">Flujo ultima hora</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        <app-var-num
+                                            [text]="
+                                                element.hap.puh_flujo
+                                                    | number: '.0-0'
+                                            "
+                                            [value]="
+                                                element.hap.puh_cumplimiento *
+                                                100
+                                            "
+                                        ></app-var-num>
+                                    </div>
+                                    <div class="col-6 pl-3">
+                                        <app-var-num
+                                            text="BPH"
+                                            [value]="
+                                                element.hap.puh_cumplimiento *
+                                                100
+                                            "
+                                        ></app-var-num>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">9</td>
+                            <td class="">Cumplimiento ultima hora</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        <app-var-num
+                                            [text]="
+                                                element.hap.puh_cumplimiento *
+                                                    100 | number: '.0-1'
+                                            "
+                                            [value]="
+                                                element.hap.puh_cumplimiento *
+                                                100
+                                            "
+                                        ></app-var-num>
+                                    </div>
+                                    <div class="col-6 pl-3">
+                                        <app-var-num
+                                            text="%"
+                                            [value]="
+                                                element.hap.puh_cumplimiento *
+                                                100
+                                            "
+                                        ></app-var-num>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">10</td>
+                            <td class="">Flujo promedio dia</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                          <app-var-num
+                                            [text]="
+                                                element.hap.pd_flujo | number: '.0-0'
+                                            "
+                                            [value]="
+                                                element.hap.pd_cumplimiento *
+                                                100
+                                            "
+                                        ></app-var-num>
+                                       
+                                    </div>
+                                    <div class="col-6 pl-3">
+                                        <app-var-num
+                                            text="BPH"
+                                            [value]="
+                                                element.hap.pd_cumplimiento *
+                                                100
+                                            "
+                                        ></app-var-num></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="py-2 text-center">11</td>
+                            <td class="">Cumplimiento promedio dia</td>
+                            <td class="" *ngFor="let element of data">
+                                <div class="grid" *ngIf="element.hap != null">
+                                    <div class="col-6 text-right">
+                                        <app-var-num
+                                            [text]="
+                                                element.hap.pd_cumplimiento *
+                                                    100 | number: '.0-1'
+                                            "
+                                            [value]="
+                                                element.hap.pd_cumplimiento *
+                                                100
+                                            "
+                                        ></app-var-num>
+                                    </div>
+                                    <div class="col-6 pl-3">
+                                        <app-var-num
+                                            text="%"
+                                            [value]="
+                                                element.hap.pd_cumplimiento *
+                                                100
+                                            "
+                                        ></app-var-num>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- <tr>
+                                    <td>
+                                        <span class="column-title">Id</span>
+                                        {{ product.id }}
+                                    </td>
+                                    <td>
+                                        <span class="column-title"
+                                            >Category</span
+                                        >
+                                        {{ product.category }}
+                                    </td>
+                                    <td>
+                                        <span class="column-title"
+                                            >Price</span
+                                        >
+                                        {{ product.price | currency: "USD" }}
+                                    </td>
+                                    <td>
+                                        <span class="column-title"
+                                            >Status</span
+                                        >
+                                        <span
+                                            [class]="
+                                                'product-badge status-' +
+                                                product.inventoryStatus.toLowerCase()
+                                            "
+                                            >{{ product.inventoryStatus }}</span
+                                        >
+                                    </td>
+                                    <td style="text-align: center">
+                                        <button
+                                            pButton
+                                            type="button"
+                                            icon="pi pi-search"
+                                        ></button>
+                                    </td>
+                                </tr> -->
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+<div #TABLE style="display: none">
+  <div class="table-responsive mt-3">
+    <table class="table table-sm">
+      <thead>
+        <tr class="font-overpass">
+          <th class="text-left" style="width:5%">#</th>
+          <th class="text-left" style="width:5%">Estación</th>
+          <th class="text-left" style="width:5%">Activo</th>
+          <th class="text-left" style="width:5%">Gabinetes</th>
+          <th class="text-left" style="width:5%">Tag Gabinete</th>
+          <th class="text-left" style="width:5%">Dimensiones (An*Al*Pr)</th>
+          <th class="text-left" style="width:5%">PLC</th>
+          <th class="text-left" style="width:5%">Referencia</th>
+          <th class="text-left" style="width:5%">Backplanes</th>
+          <th class="text-left" style="width:5%">Slots</th>
+          <th class="text-left" style="width:5%">Switches</th>
+          <!--<th class="text-left" style="width:5%">CRA31210</th>
+          <th class="text-left" style="width:5%">NOC0311</th>
+          <th class="text-left" style="width:5%">NOM0200</th>
+          <th class="text-left" style="width:5%">AHI0812</th>
+          <th class="text-left" style="width:5%">AHO0412</th>
+          <th class="text-left" style="width:5%">AMO0410</th>
+          <th class="text-left" style="width:5%">ART0414</th>
+          <th class="text-left" style="width:5%">ART0814</th>
+          <th class="text-left" style="width:5%">DDI1602</th>
+          <th class="text-left" style="width:5%">DDI3202K</th>
+          <th class="text-left" style="width:5%">DDO1602</th>
+          <th class="text-left" style="width:5%">DDO3202K</th>
+          <th class="text-left" style="width:5%">DRA1605</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of datos" style="cursor: pointer">
+          <td class="text-left">{{ element.code }}</td>
+          <td class="text-left">{{ element.name }}</td>
+          <td class="text-left">{{ element.active }}</td>
+          <td class="text-left">{{ element.cabinets }}</td>
+          <td class="text-left">{{ element.tag_cabinets }}</td>
+          <td class="text-left">{{ element.dimensions }}</td>
+          <td class="text-left">{{ element.plc }}</td>
+          <td class="text-left">{{ element.reference }}</td>
+          <td class="text-left">{{ element.backplanes }}</td>
+          <td class="text-left">{{ element.slots }}</td>
+          <td class="text-left">{{ element.switches }}</td>
+          <!--<td class="text-left">{{ element.CRA31210 }}</td>
+          <td class="text-left">{{ element.NOC0311 }}</td>
+          <td class="text-left">{{ element.NOC0321 }}</td>
+          <td class="text-left">{{ element.NOM0200 }}</td>
+          <td class="text-left">{{ element.NRP0200 }}</td>
+          <td class="text-left">{{ element.AHI0812 }}</td>
+          <td class="text-left">{{ element.AHO0412 }}</td>
+          <td class="text-left">{{ element.AMO0410 }}</td>
+          <td class="text-left">{{ element.ART0414 }}</td>
+          <td class="text-left">{{ element.ART0814 }}</td>
+          <td class="text-left">{{ element.DDI1602 }}</td>
+          <td class="text-left">{{ element.DDI3202K }}</td>
+          <td class="text-left">{{ element.DDO1602 }}</td>
+          <td class="text-left">{{ element.DDO3202K }}</td>
+          <td class="text-left">{{ element.DRA1605 }}</td>-->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="table-responsive mt-3">
+  <table class="table table-sm">
+    <thead>
+      <tr class="font-overpass">
+        <!--<th class="text-left" style="width:5%">#</th>-->
+        <th class="text-left" style="width:20%">Estación</th>
+        <th class="text-left" style="width:5%">Activo</th>
+        <th class="text-center" style="width:5%">Gab.</th>
+        <th class="text-left" style="width:15%">Tag_Gabinete</th>
+        <th class="text-left" style="width:5%">Dimensiones</th>
+        <th class="text-center" style="width:5%">PLC</th>
+        <th class="text-left" style="width:5%">Referencia</th>
+        <th class="text-center" style="width:5%">Backp.</th>
+        <th class="text-center" style="width:5%">Slots</th>
+        <th class="text-center" style="width:5%">Switches</th>
+        <!--<th class="text-left" style="width:5%">CRA31210</th>
+        <th class="text-left" style="width:5%">NOC0311</th>
+        <th class="text-left" style="width:5%">NOM0200</th>
+        <th class="text-left" style="width:5%">AHI0812</th>
+        <th class="text-left" style="width:5%">AHO0412</th>
+        <th class="text-left" style="width:5%">AMO0410</th>
+        <th class="text-left" style="width:5%">ART0414</th>
+        <th class="text-left" style="width:5%">ART0814</th>
+        <th class="text-left" style="width:5%">DDI1602</th>
+        <th class="text-left" style="width:5%">DDI3202K</th>
+        <th class="text-left" style="width:5%">DDO1602</th>
+        <th class="text-left" style="width:5%">DDO3202K</th>
+        <th class="text-left" style="width:5%">DRA1605</th>
+        <th class="text-center" style="width:10%">Acciones</th>-->
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="text-left text-md"
+        *ngFor="
+          let element of datos
+            | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
+        "
+      >
+        <!--<td class="text-left">{{ element.code }}</td>-->
+        <td class="text-left" style="width:20%">{{ element.name }}</td>
+        <td class="text-left">{{ element.active }}</td>
+        <td class="text-center">{{ element.cabinets }}</td>
+        <td class="text-left">{{ element.tag_cabinets }}</td>
+        <td class="text-left">{{ element.dimensions }}</td>
+        <td class="text-center">{{ element.plc }}</td>
+        <td class="text-left">{{ element.reference }}</td>
+        <td class="text-center">{{ element.backplanes }}</td>
+        <td class="text-center">{{ element.slots }}</td>
+        <td class="text-center">{{ element.switches }}</td>
+        <!--<td class="text-left">{{ element.CRA31210 }}</td>
+        <td class="text-left">{{ element.NOC0311 }}</td>
+        <td class="text-left">{{ element.NOC0321 }}</td>
+        <td class="text-left">{{ element.NOM0200 }}</td>
+        <td class="text-left">{{ element.NRP0200 }}</td>
+        <td class="text-left">{{ element.AHI0812 }}</td>
+        <td class="text-left">{{ element.AHO0412 }}</td>
+        <td class="text-left">{{ element.AMO0410 }}</td>
+        <td class="text-left">{{ element.ART0414 }}</td>
+        <td class="text-left">{{ element.ART0814 }}</td>
+        <td class="text-left">{{ element.DDI1602 }}</td>
+        <td class="text-left">{{ element.DDI3202K }}</td>
+        <td class="text-left">{{ element.DDO1602 }}</td>
+        <td class="text-left">{{ element.DDO3202K }}</td>
+        <td class="text-left">{{ element.DRA1605 }}</td>
+        <td></td>-->
+      </tr>
+    </tbody>
+  </table>
+</div>

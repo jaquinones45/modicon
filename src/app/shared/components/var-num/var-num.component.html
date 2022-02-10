@@ -1,0 +1,8 @@
+<div
+    [ngClass]="{
+        rojo: value < min || value > max,
+        verde: value < max || value > min
+    }"
+>
+    {{ text }}
+</div>

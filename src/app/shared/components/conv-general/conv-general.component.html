@@ -1,0 +1,20 @@
+<div class="flex flex-row align-items-center pb-2">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <circle cx="6" cy="6" r="5" fill="#2ED47A" />
+  </svg>
+  <div class="mx-2 subtitulo">Cumplimiento</div>
+
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <circle cx="6" cy="6" r="5" fill="#FF3C5F" />
+  </svg>
+  <div class="mx-2 subtitulo">Desviación</div>
+
+
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"  *ngIf="apagado">
+      <circle cx="6" cy="6" r="5" fill="#C4C4C4" />
+    </svg>
+    <div class="mx-2 subtitulo"  *ngIf="apagado">Unidad Apagada</div>
+ 
+</div>
+
+<!--  <rect width="10" height="10" fill='#34DB43' /> -->

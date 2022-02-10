@@ -1,0 +1,16 @@
+<svg id="map221" width="100%" height="100%" viewBox="0 0 1790 595"></svg>
+<div *ngFor="let element of sistemas; let i = index">
+    <app-tarjeta-mapa
+        [svg]="svg"
+        [viewBoxHeight]="102"
+        [viewBoxWidth]="200"
+        [title]="element.name"
+        [id]="element.code"
+        [data]="makeData(element.code)"
+        [name]="i"
+        [x]="coordenada(element.location, false)"
+        [y]="coordenada(element.location, true)"
+        (filter)="emitfilterBySistema($event)"
+        (filterBalance)="emitfilterBalance($event)"
+    ></app-tarjeta-mapa>
+</div>
