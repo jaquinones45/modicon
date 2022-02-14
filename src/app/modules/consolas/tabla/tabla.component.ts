@@ -32,7 +32,7 @@ export class TablaComponent implements OnInit {
   ngOnChanges() {
     this.original = this.data;
     this.datos = this.data;
-    this.senData();
+    //this.senData();
     if (this.code) this.rowSelectCode = this.code
   }
 
@@ -55,7 +55,6 @@ export class TablaComponent implements OnInit {
   }
   
   clickMapPlant($event) {
-    console.log($event)
     this.rowSelectCode = 0
     this.mapPlant.emit($event)
     this.rowSelectCode = $event
