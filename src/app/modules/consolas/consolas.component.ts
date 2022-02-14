@@ -52,6 +52,10 @@ export class ConsolasComponent implements OnInit {
     coordinatesWorks = [];
     map: any;
 
+    groupMarkers: any = []
+
+    selectCode = 0
+
     async ngOnInit() {
         if (stations.length > 0) this.sistemas = stations
         this.getTopActive();
@@ -164,7 +168,7 @@ export class ConsolasComponent implements OnInit {
     }
 
     getCoordinatesWorks() {
-        let groupMarkers = [];
+        this.groupMarkers = [];
 
         this.coordinatesWorks = stations;
         this.coordinatesWorks.forEach((element) => {
@@ -182,11 +186,11 @@ export class ConsolasComponent implements OnInit {
             element.photos.map(ele => {
                 photos += 
                 `
-                    <div class="col-6">
+                    <div class="col-12 pl-3 p-1">
                         <img src="${environment.production
                             ? "./assets/stations/" + ele.photo
                             : "../../../../../assets/stations/" + ele.photo}" 
-                            width="220px" height="150px"    
+                            width="180px" height="100px"    
                         />
                     </div>
                 `
@@ -216,95 +220,94 @@ export class ConsolasComponent implements OnInit {
                     }
                 }
             })
-            console.log(col_left)
-            console.log(col_right)
 
             const customPopup = `
-                <div 
+                <!--<div 
                     style="
                         height: 300px;
-                        width: 512px;
+                        width: 632px;
                         border: 5px solid #fff;
                         background: #f1f1f1;
                         overflow-y: scroll;
                     "
+                >-->
+                <div 
+                    style="
+                        height: auto;
+                        background:#fff;
+                    "
                 >
-                    <div 
-                        style="
-                            height: auto;
-                            background:#fff;
-                        "
-                    >
-                        <div class="grid" style="width:500px">
-                            <div class="col-12">
-                                <h6 class="card-title" style="margin-bottom: 0px;">${element.name}</h6>
-                                <p class="card-subtitle m-0">${element.active}.</p>
-                            </div>
-                            <div class="col-6">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>Código:</td>
-                                            <td><b>${element.code}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gabinetes:</td>
-                                            <td><b>${element.cabinets}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dimensiones (An*Al*Pr):</td>
-                                            <td><b>${element.dimensions}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Referencia:</td>
-                                            <td><b>${element.reference}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Slots:</td>
-                                            <td><b>${element.slots}</b></td>
-                                        </tr>
-                                        ${col_left}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-6">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>Ubicación:</td>
-                                            <td><b>${element.location}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tag Gabinete:</td>
-                                            <td><b>${element.tag_cabinets}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PLC:</td>
-                                            <td><b>${element.plc}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Backplanes:</td>
-                                            <td><b>${element.backplanes}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Switches:</td>
-                                            <td><b>${element.switches}</b></td>
-                                        </tr>
-                                        ${col_right}
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="grid" style="width:620px">
+                        <div class="col-12">
+                            <h6 class="card-title" style="margin-bottom: 0px;">${element.name}</h6>
+                            <p class="card-subtitle m-0">${element.active}.</p>
                         </div>
-                        <div class="grid" style="width:500px">
-                            ${photos}
+                        <div class="col-4">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Código:</td>
+                                        <td><b>${element.code}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gabinetes:</td>
+                                        <td><b>${element.cabinets}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensiones (An*Al*Pr):</td>
+                                        <td><b>${element.dimensions}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Referencia:</td>
+                                        <td><b>${element.reference}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slots:</td>
+                                        <td><b>${element.slots}</b></td>
+                                    </tr>
+                                    ${col_left}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-4">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Ubicación:</td>
+                                        <td><b>${element.location}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tag Gabinete:</td>
+                                        <td><b>${element.tag_cabinets}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PLC:</td>
+                                        <td><b>${element.plc}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Backplanes:</td>
+                                        <td><b>${element.backplanes}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Switches:</td>
+                                        <td><b>${element.switches}</b></td>
+                                    </tr>
+                                    ${col_right}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-4">
+                            <div class="grid">
+                                ${photos}
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
             // specify popup options 
             const customOptions = {
-                'maxWidth': '500',
-                'className' : 'custom'
+                'maxWidth': '620',
+                'className' : element.code
             }
 
             /*let myPopup = L.popup({
@@ -313,11 +316,12 @@ export class ConsolasComponent implements OnInit {
             }).setLatLng([48.86, 2.35]).setContent(customPopup).addTo(this.map);*/
 
             let marker = L
-            .marker([this.coordenada(element.location, false), this.coordenada(element.location, true)], {
-                icon: myIcon,
-            })
-            .bindPopup(customPopup, customOptions)
-            .addTo(this.map);
+                .marker([this.coordenada(element.location, false), this.coordenada(element.location, true)], {
+                    icon: myIcon,
+                })
+                .on('click', ($event) => this.selectRowCode($event.target._popup.options.className))
+                .bindPopup(customPopup, customOptions)
+                .addTo(this.map);
             
             let isBouncing = true;
             this.markers.push({
@@ -327,7 +331,7 @@ export class ConsolasComponent implements OnInit {
                 latitud: this.coordenada(element.location, false),
                 longitud: this.coordenada(element.location, true)
             });
-            groupMarkers.push(marker);
+            this.groupMarkers.push(marker);
         });
     }
 
@@ -359,5 +363,15 @@ export class ConsolasComponent implements OnInit {
     handleChange(e) {
         var index = e.index;
         this.consola = this.consoles[index].codigo;
+    }
+
+    setMapPlant($event) {
+        const index = this.groupMarkers.findIndex((item) => item._popup.options.className === $event)
+        if (index !== -1) this.groupMarkers[index].openPopup();
+    }
+
+    selectRowCode($event) {
+        this.selectCode = 0
+        this.selectCode = $event
     }
 }
